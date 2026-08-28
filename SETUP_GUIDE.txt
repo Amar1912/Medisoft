@@ -1,0 +1,77 @@
+MEDISLOT - APP SETUP & FIREBASE CONFIGURATION GUIDE
+=====================================================
+
+This guide explains how to set up the environment and link a new Firebase project to the MediSlot Flutter application.
+
+1. PREREQUISITES
+----------------
+Ensure the following are installed on your system:
+- Flutter SDK (Version 3.47.1 or higher)
+- Java JDK 17 (Recommended: Eclipse Adoptium)
+- Node.js (Latest LTS version)
+- Firebase CLI: Install via terminal: npm install -g firebase-tools
+- FlutterFire CLI: Install via terminal: dart pub global activate flutterfire_cli
+
+2. FIREBASE PROJECT SETUP
+-------------------------
+1. Go to the Firebase Console: https://console.firebase.google.com/
+2. Click "Add Project" and follow the steps.
+3. Once created, enable the following services in the left-hand menu:
+   a. AUTHENTICATION:
+      - Click "Get Started".
+      - Enable "Email/Password" sign-in method.
+   b. CLOUD FIRESTORE:
+      - Click "Create Database".
+      - Select "Start in test mode" (for development) or "Production mode" (with secure rules).
+      - Choose a location near your users.
+   c. STORAGE:
+      - Click "Get Started".
+      - Select "Start in test mode".
+
+3. LINKING THE APP TO FIREBASE
+------------------------------
+1. Open your terminal in the root directory of the Flutter project.
+2. Login to Firebase:
+   firebase login
+3. Run the configuration tool:
+   flutterfire configure
+4. Select your new project from the list.
+5. Select "android" and "ios" platforms.
+6. The tool will automatically update:
+   - lib/firebase_options.dart
+   - android/app/google-services.json
+   - ios/Runner/GoogleService-Info.plist
+
+4. SYSTEM CONFIGURATION (FOR BUILD SUCCESS)
+-------------------------------------------
+To ensure the Android build succeeds, verify these project settings:
+- Gradle Version: 8.14 (in android/gradle/wrapper/gradle-wrapper.properties)
+- AGP Version: 8.11.1 (in android/settings.gradle.kts)
+- Java Version: JDK 17 (Ensure Flutter is configured to use it: flutter config --jdk-dir "path/to/jdk17")
+
+5. RUNNING THE APPLICATION
+--------------------------
+Run the app using the command:
+flutter run --android-skip-build-dependency-validation
+
+6. ACCESS & USER ROLES
+----------------------
+- DEFAULT ADMIN:
+  - Email: admin@gmail.com
+  - Password: Admin@123
+  - (The app automatically creates this account on the first login attempt if it doesn't exist).
+
+- ADMIN DASHBOARD:
+  - Accessible only via the admin email above.
+  - Use this to Register New Doctors (Assigns Email, Password, and Specialty).
+  - Doctors created here can then log in using their assigned credentials.
+
+- PATIENT REGISTRATION:
+  - Use the "Register" link on the Login screen.
+  - All users registered here are automatically assigned the "Patient" role.
+
+7. TROUBLESHOOTING
+------------------
+- If doctors don't appear: Ensure you have added them via the Admin Dashboard.
+- If login fails: Verify that the "Email/Password" method is enabled in the Firebase Auth console.
+- Missing Indexes: If Firestore queries fail, the debug console will provide a link to click and automatically create the required index in the Firebase console.

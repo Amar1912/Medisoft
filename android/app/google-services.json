@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "56222794090",
+    "project_id": "docapp-adcc7",
+    "storage_bucket": "docapp-adcc7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56222794090:android:85bc13670ef2a69dace513",
+        "android_client_info": {
+          "package_name": "com.example.appointment_booking_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAc-Fa5JUMO_-98lYxB6s_wtJ0OJ8m28mw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
